@@ -40,6 +40,16 @@ return this.save();
    
 }
 
+userSchema.methods.deleteCartItem=function(productId){
+  const cartItems=this.cart.items;
+  let updatedCartItems=cartItems.filter((item)=>{
+    return item.productId!=productId;
+  })
+
+  this.cart.items=updatedCartItems;
+  return this.save();
+}
+
 
 
 module.exports=mongoose.model('User',userSchema);
